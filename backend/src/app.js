@@ -1,9 +1,9 @@
 
 /* MÉTODOS HTTP
-Get: buscar informação bak-end
-Post: criar uma informação no bak-end
-Put: alterar uma informação no bak-end
-Delete: deletar uma informação bak-end
+Get: buscar informação back-end
+Post: criar uma informação no back-end
+Put: alterar uma informação no back-end
+Delete: deletar uma informação back-end
 */
 
 /* TIPOS DE PARÂMETROS
@@ -19,11 +19,13 @@ npm start: start nodemon
 const express = require('express');
 const cors = require('cors');
 const routes = require('./routes');
+const { errors } = require('celebrate');
 
 const app = express();
 app.use(cors())
 app.use(express.json());
 app.use(routes);
+app.use(errors());
 
 
-app.listen(3333);
+module.exports = app;
