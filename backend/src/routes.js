@@ -2,6 +2,7 @@ const express = require('express');
 const { celebrate, Segments, Joi } = require('celebrate');
 
 const OngController = require('./controllers/Ongcontroller');
+const OngFilter = require('./controllers/Ongcontroller');
 const IncidentController = require('./controllers/IncidentController');
 const ProfileController = require('./controllers/ProfileController');
 const SessionController = require('./controllers/SessionController');
@@ -9,7 +10,7 @@ const routes = express.Router();
 
 routes.post('/sessions', SessionController.create);
 
-routes.get('/ongs/:type', OngController.byType);
+routes.get('/ongs/:type', OngFilter.byType);
 routes.get('/ongs', OngController.index);
 
 routes.post('/ongs', celebrate({

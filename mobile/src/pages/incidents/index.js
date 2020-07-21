@@ -19,6 +19,10 @@ export default function Incidents() {
         navigation.navigate('Detail', { incident });
     }
 
+    function navigateToOngs() {
+        navigation.navigate('Ongs');
+    }
+
     async function loadIncidents() {
         if (loading) {
             return;
@@ -31,10 +35,7 @@ export default function Incidents() {
         setLoading(true);
         const response = await api.get('incidents', {
             params: { page }
-          });
-
-        //const response = await api.get('incidents');
-        //const response = await api.get('incidents');
+        });
 
         setIncidents([...incidents, ...response.data]);
         setTotal(response.headers['x-total-count']);
@@ -57,7 +58,14 @@ export default function Incidents() {
                 </Text>
             </View>
 
-            <Text style={styles.title}>Bem vindo!</Text>
+            <View style={styles.ongs}>
+                <Text style={styles.title}>Bem vindo!</Text>
+                <TouchableOpacity style={styles.detailsButtonOngs} onPress={() => navigateToOngs()}>
+                    <Text style={styles.detailsButtonText}>Ver ONGS cadastradas</Text>
+                    <Feather name="arrow-right" size={16} color="#E02041" />
+                </TouchableOpacity>
+            </View>
+
             <Text style={styles.description}>Escolha um dos casos abaixo e salve o dia.</Text>
 
             <FlatList
@@ -67,7 +75,8 @@ export default function Incidents() {
                 showsVerticalScrollIndicator={false}
                 onEndReached={loadIncidents}
                 onEndReachedThreshold={0.2}
-                renderItem={({ item: incident }) => (<View style={styles.incidentList}>
+                renderItem={({ item: incident }) => (
+                <View style={styles.incidentList}>
                     <View style={styles.incident}>
                         <Text style={styles.incidentProperty}>ONG:</Text>
                         <Text style={styles.incidentValue}>{incident.name}</Text>

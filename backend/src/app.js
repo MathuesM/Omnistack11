@@ -8,7 +8,7 @@ Delete: deletar uma informação back-end
 
 /* TIPOS DE PARÂMETROS
 Query params: parâmetros nomeados enviados na rota após "?" (filtro)
-Toute params: Parâmetros utilizados para identificar recursos
+Route params: Parâmetros utilizados para identificar recursos
 Request body: corpo da requisição utilizado para criar ou alterar recursos
 */
 
